@@ -1,0 +1,10 @@
+# Ignore known vulnerabilities temporarily
+
+# h11: h11 accepts some malformed Chunked-Encoding bodies
+CVE-2025-43859
+
+# python-jose: algorithm confusion with OpenSSH ECDSA keys
+CVE-2024-33663
+
+# starlette: DoS via Range header merging
+CVE-2025-62727

@@ -318,3 +318,25 @@ def test_model_division():
     with pytest.raises(ValueError):
         calc_zero = Calculation.create("division", dummy_user_id, [100, 0])
         calc_zero.get_result()
+
+def test_all_html_pages(fastapi_server):
+    urls = [
+        "",
+        "login",
+        "register",
+        "dashboard",
+        "dashboard/view/123",
+        "dashboard/edit/123",
+    ]
+
+    for url in urls:
+        response = requests.get(f"{fastapi_server}{url}")
+        assert response.status_code == 200
+
+def test_health_endpoint(fastapi_server):
+    response = requests.get(f"{fastapi_server}health")
+
+    assert response.status_code == 200
+    assert response.json() == {"status": "ok"}
+
+
